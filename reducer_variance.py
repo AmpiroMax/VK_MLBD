@@ -9,9 +9,9 @@ def reducer():
 
     for line in sys.stdin:
         trio = line.split()
-        data_count += trio[0]
-        data_sum += trio[0] * trio[1]
-        data_sq_sum += (trio[2] + (trio[0] * trio[1])**2) * trio[0]
+        data_count += float(trio[0])
+        data_sum += float(trio[0]) * float(trio[1])
+        data_sq_sum += (float(trio[2]) + (float(trio[0]) * float(trio[1]))**2) * float(trio[0])
     
     data_mean = data_sum / data_count
     data_variance = data_sq_sum / data_count - data_mean**2
