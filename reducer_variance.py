@@ -11,7 +11,7 @@ def reducer():
         trio = line.split()
         data_count += float(trio[0])
         data_sum += float(trio[0]) * float(trio[1])
-        data_sq_sum += (float(trio[2]) + (float(trio[0]) * float(trio[1]))**2) * float(trio[0])
+        data_sq_sum += (float(trio[2]) + (float(trio[1]))**2) * float(trio[0])
     
     data_mean = data_sum / data_count
     data_variance = data_sq_sum / data_count - data_mean**2
