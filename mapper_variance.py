@@ -8,7 +8,7 @@ def mapper():
     total_sum = 0
     total_sq_sum = 0
 
-    for line in csv.reader(sys.stdin, delimiter=",")
+    for line in csv.reader(sys.stdin, delimiter=","):
         price = line[PRICE_COLUMN]
 
         try:

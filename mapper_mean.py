@@ -6,7 +6,7 @@ def mapper():
     chunk_count = 0
     total_sum = 0
 
-    for line in csv.reader(sys.stdin, delimiter=",")
+    for line in csv.reader(sys.stdin, delimiter=","):
         price = line[PRICE_COLUMN]
         
         try:
