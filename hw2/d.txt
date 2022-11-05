@@ -1,0 +1,8 @@
+-- Top 5 gropus with highest scrobbles 
+-- it is interesting to see that all of them are 
+-- from UK
+SELECT artist_lastfm, scrobbles_lastfm, country_lastfm
+FROM artists
+GROUP BY country_lastfm, artist_lastfm, scrobbles_lastfm
+ORDER BY scrobbles_lastfm DESC
+LIMIT 5
