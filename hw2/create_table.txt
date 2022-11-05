@@ -1,0 +1,10 @@
+CREATE TABLE artists (mbid STRING,
+artist_mb STRING,
+artist_lastfm STRING,
+country_mb STRING,
+country_lastfm STRING,
+tags_mb STRING,
+tags_lastfm STRING,
+listeners_lastfm BIGINT,
+scrobbles_lastfm BIGINT,
+ambiguous_artist BOOLEAN);
