@@ -1,0 +1,23 @@
+select artist_lastfm, count(artist_lastfm) as cnt
+from(
+    SELECT trim(tags) as trimmed, artist_lastfm
+    FROM artists
+    LATERAL VIEW explode(split(tags_lastfm, ';')) aboba AS tags
+) as ff
+where trimmed in (
+    select trim_sub_tags
+    from (
+        select trim_sub_tags, count(trim_sub_tags) as cnt
+        from (
+            SELECT trim(sub_tags) as trim_sub_tags
+            FROM artists
+            LATERAL VIEW explode(split(tags_lastfm, ';')) aboba AS sub_tags
+        ) as fff
+        group by trim_sub_tags
+        order by cnt desc
+        limit 10
+    ) as f
+)
+group by artist_lastfm
+order by cnt desc
+;
