@@ -1,0 +1,9 @@
+# VS Code files
+.vscode
+
+# Scala metals
+.metals
+.bloop
+.scalafmt.conf
+target
+project
