@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def generate_data():
-    DATA_SIZE = 20
+    DATA_SIZE = 100
     TRAIN_SIZE = 0.8
     data = make_regression(
         n_samples=DATA_SIZE,

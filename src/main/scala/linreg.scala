@@ -3,7 +3,10 @@ import breeze.linalg.{
     csvread, csvwrite,
     inv, sum
 }
-import java.io.File
+import java.io.{
+    File,
+    PrintWriter,
+}
 
 
 class DataWorker(val data_path: String){
@@ -29,6 +32,14 @@ class DataWorker(val data_path: String){
 
     def write_data(predictions: DenseMatrix[Double]) = {
         csvwrite(new File(data_path+"predictions.csv"), predictions, ',')
+    }
+
+    def write_metrics(mse_before: Double, mse_after: Double) = {
+        val pw = new PrintWriter(new File(data_path+"metrics"))
+        pw.write("MSE loss on validation before fit " + mse_before)
+        pw.write("\n")
+        pw.write("MSE loss on validation after fit " + mse_after)
+        pw.close
     }
 }
 
@@ -63,13 +74,14 @@ object Hello {
         val model = new LinReg(cols, 1)
 
         val pred1 = model.predict(x_valid)
-        println("MSE loss before fit " + model.mse_loss(y_valid, pred1))
+        val mse_before = model.mse_loss(y_valid, pred1)
 
         model.fit(x_train, y_train)
         val pred2 = model.predict(x_valid)
-        println("MSE loss after fit " + model.mse_loss(y_valid, pred2))
+        val mse_after = model.mse_loss(y_valid, pred2)
 
         worker.write_data(model.predict(x_test))
+        worker.write_metrics(mse_before, mse_after)
 
     }
 }
